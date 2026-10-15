@@ -14,6 +14,7 @@
   <script defer src="../js/shared/data.js"></script>
   <script defer src="../js/shared/store.js"></script>
   <script defer src="../js/shared/utils.js"></script>
+  <script defer src="../js/shared/validaciones.js"></script>
   <script defer src="../js/shared/components.js"></script>
   <script defer src="../js/shared/modals.js"></script>
   <script defer src="../js/shared/layout.js"></script>
@@ -29,10 +30,22 @@
         </div>
 
         <form class="acceso__form" id="acceso-form" role="tabpanel" novalidate>
-          <label class="campo" data-solo="registro"><span class="campo__etiqueta">Nombre</span><input class="entrada" name="nombre" placeholder="Sofía Martínez" autocomplete="name"></label>
-          <label class="campo"><span class="campo__etiqueta">Email</span><input class="entrada" name="email" type="email" placeholder="sofia@mail.com" autocomplete="email" required aria-describedby="acceso-error"></label>
-          <label class="campo"><span class="campo__etiqueta">Contraseña</span><input class="entrada" name="clave" type="password" placeholder="Mínimo 8 caracteres" autocomplete="current-password"></label>
-          <p class="error-form" id="acceso-error" hidden>Ingresá un email válido para continuar.</p>
+          <div class="campo" data-solo="registro">
+            <label class="campo__etiqueta" for="campo-nombre">Nombre y apellido</label>
+            <input class="entrada" id="campo-nombre" name="nombre" placeholder="Sofía Martínez" autocomplete="name" autocapitalize="words" maxlength="60" aria-describedby="error-nombre">
+            <span class="campo__error" id="error-nombre" hidden></span>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="campo-email">Email</label>
+            <input class="entrada" id="campo-email" name="email" type="email" inputmode="email" placeholder="sofia@mail.com" autocomplete="email" autocapitalize="off" spellcheck="false" maxlength="254" required aria-describedby="error-email">
+            <span class="campo__error" id="error-email" hidden></span>
+          </div>
+          <div class="campo">
+            <label class="campo__etiqueta" for="campo-clave">Contraseña</label>
+            <input class="entrada" id="campo-clave" name="clave" type="password" placeholder="Mínimo 8 caracteres" autocomplete="current-password" maxlength="64" required aria-describedby="ayuda-clave error-clave">
+            <span class="campo__ayuda" id="ayuda-clave" data-solo="registro">Al menos 8 caracteres, con letras y números.</span>
+            <span class="campo__error" id="error-clave" hidden></span>
+          </div>
           <button type="button" class="casilla esta-marcado" data-solo="registro" data-accion="sumarme" aria-pressed="true">
             <span class="casilla__caja" aria-hidden="true">✓</span>
             <span>Quiero sumarme al Club SushiClub y recibir beneficios exclusivos.</span>

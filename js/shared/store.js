@@ -7,7 +7,7 @@ window.SushiClub = window.SushiClub || {};
   const CLAVE = 'sushiclub:estado:v5';
 
   // Datos personales que no se copian a window.name (ver guardar()).
-  const PRIVADOS = ['email', 'direccion', 'cp', 'indicaciones'];
+  const PRIVADOS = ['nombre', 'email', 'telefono', 'direccion', 'cp', 'indicaciones'];
 
   function estadoInicial() {
     return {
@@ -18,7 +18,9 @@ window.SushiClub = window.SushiClub || {};
       bienvenida: false,
       sesionIniciada: false,
       medioPago: 'tarjeta',
+      nombre: '',
       email: '',
+      telefono: '',
       direccion: '',
       cp: '',
       indicaciones: '',

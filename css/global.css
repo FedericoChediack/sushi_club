@@ -372,8 +372,17 @@ input::placeholder, textarea::placeholder { color: var(--apagado-3); }
 .entrada.tiene-error { border-color: var(--rojo); }
 textarea.entrada { resize: vertical; }
 input[type="date"].entrada { padding: 13px; color-scheme: dark; }
-.error-form { font: 700 13px var(--fuente-texto); color: var(--rojo-claro); }
-.error-form--chico { font-size: 12px; }
+/* Mensaje de error propio de cada campo (lo maneja js/shared/validaciones.js) */
+.campo__error {
+  display: flex;
+  gap: 6px;
+  font: 700 12px/1.4 var(--fuente-texto);
+  color: var(--rojo-claro);
+}
+.campo__error::before { content: '!'; flex: none; display: grid; place-items: center; width: 16px; height: 16px; border-radius: 50%; background: var(--rojo); color: #fff; font-size: 11px; line-height: 1; }
+.campo__error[hidden] { display: none; }
+.campo__ayuda { font: 400 12px/1.4 var(--fuente-texto); color: var(--apagado-2); }
+.form-nota { font: 400 12px var(--fuente-texto); color: var(--apagado-2); }
 
 .casilla {
   display: flex;

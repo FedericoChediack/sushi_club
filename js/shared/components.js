@@ -79,11 +79,15 @@ window.SushiClub = window.SushiClub || {};
     </button>`).join('');
   }
 
-  function campo({ etiqueta, nombre, valor = '', ayuda = '', tipo = 'text', error = false, clase = '', atributos = '' }) {
-    return `<label class="campo ${clase}">
-      <span class="campo__etiqueta">${etiqueta}</span>
-      <input class="entrada ${error ? 'tiene-error' : ''}" name="${nombre}" type="${tipo}" value="${escapar(valor)}" placeholder="${escapar(ayuda)}" ${atributos}>
-    </label>`;
+  // Campo de formulario: etiqueta, input y debajo su mensaje de error (id "error-NOMBRE").
+  // error: mensaje a mostrar ('' si no hay). obligatorio: agrega el * y el atributo required.
+  function campo({ etiqueta, nombre, valor = '', ayuda = '', tipo = 'text', error = '', obligatorio = false, clase = '', atributos = '' }) {
+    const id = 'campo-' + nombre;
+    return `<div class="campo ${clase}">
+      <label class="campo__etiqueta" for="${id}">${etiqueta}${obligatorio ? ' *' : ''}</label>
+      <input class="entrada ${error ? 'tiene-error' : ''}" id="${id}" name="${nombre}" type="${tipo}" value="${escapar(valor)}" placeholder="${escapar(ayuda)}" aria-describedby="error-${nombre}" ${error ? 'aria-invalid="true"' : ''} ${obligatorio ? 'required' : ''} ${atributos}>
+      <span class="campo__error" id="error-${nombre}" ${error ? '' : 'hidden'}>${escapar(error)}</span>
+    </div>`;
   }
 
   SushiClub.componentes = { imagen, selectorCantidad, tarjetaProducto, accionesProducto, barraPasos, fichas, opciones, campo };

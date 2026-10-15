@@ -3,6 +3,7 @@
   const { REGALOS, ENVIO_REGALO, FRANJAS_REGALO, DIAS } = SushiClub.datos;
   const { $, delegar, moneda, escapar } = SushiClub.utilidades;
   const { barraPasos, fichas, opciones, campo } = SushiClub.componentes;
+  const { reglas, validarFormulario, validarEnVivo, mascaras, aplicarMascaras } = SushiClub.validaciones;
 
   montarLayout({ pagina: 'gift' });
 
@@ -22,8 +23,35 @@
     franja: FRANJAS_REGALO[0],
     pago: 'tarjeta',
     email: '',
-    error: false,
   };
+
+  // Último error de cada campo, para volver a mostrarlo si el paso se redibuja.
+  const errores = {};
+
+  // Reglas de cada paso del regalo (el 1 solo elige la caja).
+  const ESQUEMAS = {
+    2: {
+      mensaje: [reglas.maximo(MAX_MENSAJE, `El mensaje puede tener hasta ${MAX_MENSAJE} caracteres.`)],
+      firma: [reglas.maximo(40, 'La firma puede tener hasta 40 caracteres.'), reglas.nombre('Firmá solo con letras y espacios.')],
+    },
+    3: {
+      destinatario: [reglas.requerido('Ingresá el nombre de quien recibe: lo necesita el repartidor para entregar el regalo.'), reglas.nombre()],
+      telefono: [reglas.telefono('Si lo completás, tiene que ser un teléfono de Argentina con código de área, por ejemplo 11 5555 5555.')],
+      direccion: [reglas.requerido('Ingresá la dirección donde entregamos el regalo.'), reglas.direccion()],
+    },
+    4: {
+      email: [reglas.requerido('Ingresá tu email: ahí te mandamos el comprobante y el seguimiento del envío.'), reglas.email()],
+    },
+  };
+  const esquemaActual = () => ESQUEMAS[regalo.paso] || {};
+
+  // Valida el paso actual del regalo; marca cada campo con su mensaje.
+  function validarPasoRegalo() {
+    const resultado = validarFormulario($('#regalo-form'), esquemaActual());
+    Object.keys(errores).forEach(k => delete errores[k]);
+    Object.assign(errores, resultado.errores);
+    return resultado;
+  }
 
   const cajaElegida = () => REGALOS.find(r => r.id === regalo.caja);
   const cuando = () => `${DIAS[regalo.dia]} · ${regalo.franja}`;
@@ -43,12 +71,13 @@
     return `<h2 class="titulo-seccion regalo-titulo">Escribí la tarjeta</h2>
       <div class="regalo-tarjeta">
         <div class="regalo-tarjeta__campos">
-          <label class="campo">
-            <span class="campo__etiqueta">Tu mensaje</span>
-            <textarea class="entrada" name="mensaje" rows="5" maxlength="${MAX_MENSAJE}" placeholder="${MENSAJE_EJEMPLO}">${escapar(regalo.mensaje)}</textarea>
+          <div class="campo">
+            <label class="campo__etiqueta" for="campo-mensaje">Tu mensaje</label>
+            <textarea class="entrada ${errores.mensaje ? 'tiene-error' : ''}" id="campo-mensaje" name="mensaje" rows="5" maxlength="${MAX_MENSAJE}" placeholder="${MENSAJE_EJEMPLO}" aria-describedby="regalo-contador error-mensaje">${escapar(regalo.mensaje)}</textarea>
             <span class="regalo-contador" id="regalo-contador">${regalo.mensaje.length} / ${MAX_MENSAJE}</span>
-          </label>
-          ${campo({ etiqueta: 'Firmado por', nombre: 'firma', valor: regalo.firma, ayuda: 'Tu nombre' })}
+            <span class="campo__error" id="error-mensaje" ${errores.mensaje ? '' : 'hidden'}>${escapar(errores.mensaje || '')}</span>
+          </div>
+          ${campo({ etiqueta: 'Firmado por', nombre: 'firma', valor: regalo.firma, ayuda: 'Tu nombre', error: errores.firma, atributos: 'autocomplete="name" maxlength="40"' })}
         </div>
         <div class="regalo-vista" aria-label="Vista previa de la tarjeta">
           <span class="regalo-vista__punto" aria-hidden="true"></span>
@@ -62,13 +91,13 @@
   function pasoEntrega() {
     return `<h2 class="titulo-seccion regalo-titulo">¿A quién se lo mandamos?</h2>
       <div class="grilla-form">
-        ${campo({ etiqueta: 'Nombre de quien recibe *', nombre: 'destinatario', valor: regalo.destinatario, ayuda: 'Lucía', error: regalo.error && !regalo.destinatario.trim(), atributos: 'required' })}
-        ${campo({ etiqueta: 'Teléfono de quien recibe', nombre: 'telefono', tipo: 'tel', valor: regalo.telefono, ayuda: 'Para coordinar la entrega' })}
-        ${campo({ etiqueta: 'Dirección de entrega *', nombre: 'direccion', valor: regalo.direccion, ayuda: 'Calle, número, piso', error: regalo.error && !regalo.direccion.trim(), clase: 'campo--completo', atributos: 'required' })}
+        ${campo({ etiqueta: 'Nombre de quien recibe', nombre: 'destinatario', valor: regalo.destinatario, ayuda: 'Lucía', obligatorio: true, error: errores.destinatario, atributos: 'autocapitalize="words" maxlength="60"' })}
+        ${campo({ etiqueta: 'Teléfono de quien recibe', nombre: 'telefono', tipo: 'tel', valor: regalo.telefono, ayuda: 'Para coordinar la entrega', error: errores.telefono, atributos: 'inputmode="tel" maxlength="20"' })}
+        ${campo({ etiqueta: 'Dirección de entrega', nombre: 'direccion', valor: regalo.direccion, ayuda: 'Calle, número, piso', obligatorio: true, error: errores.direccion, clase: 'campo--completo', atributos: 'autocomplete="street-address" maxlength="80"' })}
       </div>
       <div class="campo" role="group" aria-label="Día"><span class="campo__etiqueta">Día</span><div class="regalo-dias">${fichas(DIAS, DIAS[regalo.dia], 'dia')}</div></div>
       <div class="campo" role="group" aria-label="Franja horaria"><span class="campo__etiqueta">Franja horaria</span>${fichas(FRANJAS_REGALO, regalo.franja, 'franja')}</div>
-      ${regalo.error ? '<p class="error-form">Completá el nombre y la dirección de quien recibe.</p>' : ''}`;
+      <p class="form-nota">Los campos con * son obligatorios.</p>`;
   }
 
   function pasoPago() {
@@ -78,7 +107,7 @@
     ];
     return `<h2 class="titulo-seccion regalo-titulo">Pago</h2>
       <div class="opciones">${opciones(medios, regalo.pago, 'pago')}</div>
-      ${campo({ etiqueta: 'Tu email', nombre: 'email', tipo: 'email', valor: regalo.email, ayuda: 'Para mandarte el comprobante', clase: 'regalo-email', atributos: 'autocomplete="email"' })}`;
+      ${campo({ etiqueta: 'Tu email', nombre: 'email', tipo: 'email', valor: regalo.email, ayuda: 'Para mandarte el comprobante', obligatorio: true, error: errores.email, clase: 'regalo-email', atributos: 'autocomplete="email" inputmode="email" autocapitalize="off" spellcheck="false" maxlength="254"' })}`;
   }
 
   function panel() {
@@ -102,7 +131,7 @@
 
   function irAPaso(n) {
     regalo.paso = n;
-    regalo.error = false;
+    Object.keys(errores).forEach(k => delete errores[k]);
     dibujar();
     window.scrollTo({ top: 0 });
   }
@@ -118,12 +147,12 @@
     atras: () => irAPaso(Math.max(1, regalo.paso - 1)),
   });
 
-  // Inputs: se guarda sin redibujar; la vista previa y el resumen se actualizan en vivo.
+  // Inputs: formato del teléfono, se guarda sin redibujar y la vista previa y el resumen se actualizan en vivo.
+  aplicarMascaras($('#regalo-form'), { telefono: mascaras.telefono });
   $('#regalo-form').addEventListener('input', ev => {
     const { name: nombre, value: valor } = ev.target;
     if (!(nombre in regalo)) return;
     regalo[nombre] = nombre === 'mensaje' ? valor.slice(0, MAX_MENSAJE) : valor;
-    ev.target.classList.remove('tiene-error');
     if (nombre === 'mensaje') {
       $('#regalo-contador').textContent = `${regalo.mensaje.length} / ${MAX_MENSAJE}`;
       $('#vista-mensaje').textContent = regalo.mensaje || MENSAJE_EJEMPLO;
@@ -131,13 +160,13 @@
     if (nombre === 'firma') $('#vista-firma').textContent = `— ${regalo.firma || 'Tu nombre'}`;
     if (nombre === 'destinatario') $('#resumen-destinatario').textContent = regalo.destinatario || '—';
   });
+  validarEnVivo($('#regalo-form'), esquemaActual, (nombre, mensaje) => { if (mensaje) errores[nombre] = mensaje; else delete errores[nombre]; });
 
   $('#regalo-form').addEventListener('submit', ev => {
     ev.preventDefault();
-    if (regalo.paso === 3 && (!regalo.destinatario.trim() || !regalo.direccion.trim())) {
-      regalo.error = true;
-      dibujar();
-      $('.entrada.tiene-error')?.focus();
+    const { valido, primero } = validarPasoRegalo();
+    if (!valido) {
+      primero.focus();
       return;
     }
     if (regalo.paso < 4) { irAPaso(regalo.paso + 1); return; }

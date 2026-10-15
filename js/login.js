@@ -3,6 +3,7 @@
   const { almacen, iniciarSesion } = SushiClub.estado;
   const { PROMO_CLUB, NOMBRE_USUARIO } = SushiClub.datos;
   const { $, $$, delegar, parametro, ir, enlace, rutaSegura } = SushiClub.utilidades;
+  const { reglas, validarFormulario, validarEnVivo, mostrarError } = SushiClub.validaciones;
 
   montarLayout({ pagina: 'login' });
 
@@ -31,9 +32,25 @@
     casilla.setAttribute('aria-pressed', String(sumarme));
   }
 
-  function mostrarError(visible) {
-    formulario.elements.email.classList.toggle('tiene-error', visible);
-    $('#acceso-error').hidden = !visible;
+  // Reglas de cada pestaña: al registrarse se pide nombre y una contraseña segura.
+  function esquemaAcceso() {
+    const email = [reglas.requerido('Ingresá tu email para entrar a tu cuenta.'), reglas.email()];
+    if (pestana === 'registro') {
+      return {
+        nombre: [reglas.requerido('Ingresá tu nombre y apellido para crear la cuenta.'), reglas.nombreCompleto()],
+        email: [reglas.requerido('Ingresá tu email: lo vas a usar para entrar y ahí te llegan los beneficios.'), reglas.email()],
+        clave: [reglas.requerido('Elegí una contraseña para tu cuenta.'), reglas.clave()],
+      };
+    }
+    return { email, clave: [reglas.requerido('Ingresá tu contraseña.')] };
+  }
+
+  // Valida el formulario de la pestaña activa; marca cada campo con su mensaje.
+  const validarFormularioAcceso = () => validarFormulario(formulario, esquemaAcceso());
+
+  // Al cambiar de pestaña se limpian los errores de la anterior.
+  function limpiarErrores() {
+    ['nombre', 'email', 'clave'].forEach(nombre => mostrarError(formulario.elements[nombre], ''));
   }
 
   function terminar() {
@@ -45,18 +62,18 @@
   dibujar();
 
   delegar($('#principal'), 'click', {
-    pestana: el => { pestana = el.dataset.valor; mostrarError(false); dibujar(); },
+    pestana: el => { pestana = el.dataset.valor; limpiarErrores(); dibujar(); },
     sumarme: () => { sumarme = !sumarme; dibujar(); },
     google: () => terminar(),
   });
 
-  formulario.elements.email.addEventListener('input', () => mostrarError(false));
+  validarEnVivo(formulario, esquemaAcceso);
 
   formulario.addEventListener('submit', ev => {
     ev.preventDefault();
-    if (!formulario.elements.email.value.includes('@')) {
-      mostrarError(true);
-      formulario.elements.email.focus();
+    const { valido, primero } = validarFormularioAcceso();
+    if (!valido) {
+      primero.focus();
       return;
     }
     terminar();
