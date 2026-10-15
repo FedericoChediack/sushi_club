@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Compra confirmada · SushiClub</title>
+  <meta name="theme-color" content="#0e0d0c">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/confirmacion.css">
+  <script type="module" src="../js/confirmacion.js"></script>
+</head>
+<body>
+  <main id="principal">
+    <section class="contenedor exito confirmacion" aria-labelledby="titulo-confirmacion">
+      <div class="exito__tilde confirmacion__tilde" aria-hidden="true">✓</div>
+      <h1 class="confirmacion__titulo" id="titulo-confirmacion">¡Tu compra fue exitosa!</h1>
+      <div class="confirmacion__separador" aria-hidden="true"></div>
+      <p class="confirmacion__llegada" id="confirmacion-llegada"></p>
+      <p class="texto-mono" id="confirmacion-pedido"></p>
+      <p class="confirmacion__invitado" id="confirmacion-invitado" hidden>Iniciá sesión o registrate con el email que ingresaste y revisá el estado de tu pedido en Mis pedidos.</p>
+      <div class="exito__acciones confirmacion__acciones">
+        <a class="boton" id="confirmacion-principal" href="pedidos.html">Ver estado en Mis pedidos</a>
+        <a class="boton boton--borde" href="../index.html">Volver al inicio</a>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Iniciá sesión · SushiClub</title>
+  <meta name="theme-color" content="#0e0d0c">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/login.css">
+  <script type="module" src="../js/login.js"></script>
+</head>
+<body>
+  <main id="principal">
+    <div class="acceso">
+      <section class="acceso__form-contenedor" aria-label="Acceso">
+        <div class="acceso__pestanas" role="tablist">
+          <button type="button" class="acceso__pestana" role="tab" id="pestana-ingreso" data-accion="pestana" data-valor="ingreso" aria-controls="acceso-form">Iniciar sesión</button>
+          <button type="button" class="acceso__pestana" role="tab" id="pestana-registro" data-accion="pestana" data-valor="registro" aria-controls="acceso-form">Registrate</button>
+        </div>
+
+        <form class="acceso__form" id="acceso-form" role="tabpanel" novalidate>
+          <label class="campo" data-solo="registro"><span class="campo__etiqueta">Nombre</span><input class="entrada" name="nombre" placeholder="Sofía Martínez" autocomplete="name"></label>
+          <label class="campo"><span class="campo__etiqueta">Email</span><input class="entrada" name="email" type="email" placeholder="sofia@mail.com" autocomplete="email" required aria-describedby="acceso-error"></label>
+          <label class="campo"><span class="campo__etiqueta">Contraseña</span><input class="entrada" name="clave" type="password" placeholder="Mínimo 8 caracteres" autocomplete="current-password"></label>
+          <p class="error-form" id="acceso-error" hidden>Ingresá un email válido para continuar.</p>
+          <button type="button" class="casilla esta-marcado" data-solo="registro" data-accion="sumarme" aria-pressed="true">
+            <span class="casilla__caja" aria-hidden="true">✓</span>
+            <span>Quiero sumarme al Club SushiClub y recibir beneficios exclusivos.</span>
+          </button>
+          <button type="submit" class="boton boton--ancho boton--grande" id="acceso-enviar">Ingresar</button>
+          <button type="button" class="boton-texto acceso__olvido" data-solo="ingreso" data-accion="proximamente">¿Olvidaste tu contraseña?</button>
+          <div class="acceso__o" aria-hidden="true"><span></span>o<span></span></div>
+          <button type="button" class="boton boton--borde boton--ancho acceso__google" data-accion="google">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.35 11.1H12v2.98h5.35c-.23 1.4-1.66 4.1-5.35 4.1-3.22 0-5.85-2.67-5.85-5.96S8.78 6.26 12 6.26c1.83 0 3.06.78 3.76 1.45l2.56-2.47C16.68 3.7 14.55 2.75 12 2.75 6.9 2.75 2.75 6.9 2.75 12S6.9 21.25 12 21.25c5.34 0 8.88-3.75 8.88-9.04 0-.6-.07-1.06-.15-1.51Z"></path></svg>
+            Continuar con Google
+          </button>
+          <a class="acceso__invitado" id="acceso-invitado" href="../index.html">Seguir como invitado</a>
+        </form>
+      </section>
+
+      <aside class="banda acceso__promo" aria-labelledby="promo-titulo">
+        <span class="antetitulo antetitulo--suave acceso__promo-antetitulo">CLUB SUSHICLUB</span>
+        <h2 class="acceso__promo-titulo" id="promo-titulo">Ser parte tiene beneficios</h2>
+        <ul class="acceso__promo-lista" id="promo-lista"></ul>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

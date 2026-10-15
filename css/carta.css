@@ -1,0 +1,49 @@
+/* Carta / Pedí online */
+
+.carta-cabecera {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: clamp(24px, 3.2vw, 40px);
+  padding-bottom: clamp(28px, 3.2vw, 40px);
+}
+
+.carta-categorias { border-bottom: 2px solid var(--rojo); }
+.carta-categorias .contenedor { padding-top: 18px; padding-bottom: 18px; overflow-x: auto; scrollbar-width: none; }
+.carta-categorias .fichas { flex-wrap: nowrap; }
+
+.carta-cuerpo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 48px;
+  align-items: flex-start;
+  padding-top: 28px;
+  padding-bottom: 64px;
+}
+.carta-grilla {
+  flex: 1 1 560px;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(150px, 17vw, 220px), 1fr));
+  gap: 32px clamp(14px, 2vw, 28px);
+}
+
+/* Tarjeta en la carta */
+.producto--carta { gap: 8px; }
+.producto--carta .imagen { aspect-ratio: 1; }
+.producto--carta .producto__cuerpo { gap: 8px; }
+.producto--carta .producto__nombre { font-size: clamp(17px, 1.8vw, 22px); }
+.producto--carta .producto__descripcion { flex: 1 0 auto; font-size: 12px; }
+.producto--carta .producto__importe { font-size: 20px; }
+.producto--carta .producto__anterior { font-size: 12px; }
+.producto--carta .producto__club { font-size: 11px; }
+.producto--carta .producto__agregar { width: 100%; padding: 13px 0; }
+.producto--carta .producto__cantidad { display: flex; justify-content: space-between; }
+
+/* Panel "Tu pedido" (solo desktop) */
+.carta-panel { flex: 0 0 320px; padding: 28px; gap: 14px; }
+.carta-panel .panel__titulo { font-size: 32px; }
+.carta-panel__modo { font: 400 13px var(--fuente-texto); color: var(--apagado); }
+.carta-panel__vacio { font: 400 14px var(--fuente-texto); color: var(--texto-2); padding: 12px 0; }
+.carta-panel .panel__total span { font-size: 14px; }
+.carta-panel .panel__total strong { font-size: 30px; }

@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SushiClub · Sushi para pedir, regalar y celebrar</title>
+  <meta name="theme-color" content="#0e0d0c">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/home.css">
+  <script type="module" src="js/home.js"></script>
+</head>
+<body>
+  <main id="principal">
+    <section class="portada" aria-labelledby="titulo-portada">
+      <div class="contenedor portada__interior">
+        <div class="portada__sello" aria-hidden="true"><span class="portada__sello-numero">−20%</span><span class="portada__sello-texto">OFF</span></div>
+        <div class="portada__contenido">
+          <span class="portada__antetitulo"><span class="portada__guion"></span>SOLO MARTES Y MIÉRCOLES</span>
+          <h1 class="portada__titulo" id="titulo-portada"><span>Combinado</span><span>Club</span></h1>
+          <div class="portada__accion">
+            <button type="button" class="boton" data-accion="agregar-portada">Pedir ahora →</button>
+            <span class="portada__precio"><span class="solo-desktop">45 piezas · </span><b>$ 42.900</b> <s>$ 53.600</s></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contenedor inicio-bloque" aria-labelledby="titulo-online">
+      <div class="encabezado-seccion">
+        <h2 class="titulo-seccion" id="titulo-online">Pedí online</h2>
+        <div class="encabezado-seccion__extra solo-desktop"><span>Delivery / Retiro</span><a class="enlace-rojo" href="pages/carta.html">Ver la carta →</a></div>
+      </div>
+      <div class="inicio-productos" id="inicio-productos"></div>
+      <div class="inicio-mas solo-mobile"><a class="enlace-rojo" href="pages/carta.html">Ver la carta →</a></div>
+    </section>
+
+    <div class="contenedor inicio-regalo-contenedor">
+      <section class="inicio-regalo" aria-labelledby="titulo-regalo">
+        <div class="imagen inicio-regalo__imagen"><img src="img/gift/sushigift.jpg" alt="Caja SushiGift con cinta roja" loading="lazy"></div>
+        <span class="inicio-regalo__antetitulo">SUSHIGIFT</span>
+        <h2 class="inicio-regalo__titulo" id="titulo-regalo">Regalá sushi</h2>
+        <p class="inicio-regalo__texto">
+          <span class="solo-desktop">Elegí el combinado, sumá una tarjeta con tu mensaje y lo entregamos en la dirección y horario que nos digas.</span>
+          <span class="solo-mobile">Elegí el combinado, sumá tu mensaje y lo entregamos donde nos digas.</span>
+        </p>
+        <a class="boton inicio-regalo__accion" href="pages/gift.html">Regalar sushi →</a>
+      </section>
+    </div>
+
+    <section class="contenedor inicio-bloque inicio-bloque--ultimo" aria-labelledby="titulo-eventos">
+      <div class="encabezado-seccion">
+        <h2 class="titulo-seccion" id="titulo-eventos">Nuestros eventos</h2>
+        <a class="enlace-rojo solo-desktop" href="pages/eventos.html">Ver todos →</a>
+      </div>
+      <div class="inicio-eventos" id="inicio-eventos"></div>
+    </section>
+  </main>
+</body>
+</html>

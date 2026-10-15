@@ -1,0 +1,89 @@
+/* SushiGift */
+
+.regalo-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: clamp(24px, 3.2vw, 40px);
+  padding-bottom: clamp(24px, 3.2vw, 40px);
+}
+.regalo-cabecera__texto { display: flex; flex-direction: column; gap: 12px; }
+.regalo-cabecera__imagen { flex: 0 1 420px; min-width: 220px; }
+.regalo-cabecera__imagen img { object-position: 48% 50%; }
+
+.regalo-principal { display: flex; flex-direction: column; gap: 20px; }
+.regalo-paso { display: flex; flex-direction: column; gap: 20px; }
+.regalo-titulo { font-size: clamp(34px, 4.4vw, 56px); }
+
+/* Paso 1 */
+.regalo-cajas { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.regalo-caja {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border: 2px solid var(--borde-suave);
+  background: transparent;
+}
+.regalo-caja:hover { border-color: var(--borde); }
+.regalo-caja.esta-activo { border-color: var(--rojo); background: var(--fondo-3); }
+.regalo-caja__nombre { font: 400 24px/1 var(--fuente-titulo); text-transform: uppercase; }
+.regalo-caja__descripcion { font: 400 13px var(--fuente-texto); color: var(--apagado-2); }
+.regalo-caja__precio { font: 400 22px var(--fuente-titulo); }
+
+/* Paso 2 */
+.regalo-tarjeta { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+.regalo-tarjeta__campos { flex: 1 1 280px; display: flex; flex-direction: column; gap: 12px; }
+.regalo-contador { align-self: flex-end; font: 400 12px var(--fuente-texto); color: var(--apagado-2); }
+.regalo-vista {
+  position: relative;
+  flex: 1 1 260px;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px;
+  background: var(--fondo-2);
+  color: #fff;
+}
+.regalo-vista__punto { position: absolute; right: -30px; top: -30px; width: 120px; height: 120px; border-radius: 50%; background: var(--rojo); }
+.regalo-vista__etiqueta { font: 700 11px var(--fuente-texto); letter-spacing: .2em; color: var(--rojo-suave); }
+.regalo-vista__mensaje { position: relative; font: 500 17px/1.45 var(--fuente-texto); overflow-wrap: anywhere; }
+.regalo-vista__firma { font: 400 20px var(--fuente-titulo); }
+
+/* Paso 3 */
+.regalo-dias .fichas { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; padding-bottom: 4px; }
+.regalo-paso .ficha { padding: 12px 14px; }
+.regalo-paso > .campo { gap: 8px; }
+
+/* Paso 4 */
+.regalo-email { max-width: 420px; }
+
+/* Navegación */
+.regalo-nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--borde-suave);
+}
+.regalo-nav__atras { padding: 14px 20px; font-size: 14px; }
+.regalo-nav__siguiente { padding: 16px 24px; }
+
+/* Resumen */
+.regalo-panel { gap: 12px; padding: clamp(24px, 2.8vw, 32px); }
+.regalo-panel__titulo { font-size: clamp(28px, 2.8vw, 36px); }
+.regalo-panel__lineas { gap: 10px; font-weight: 500; }
+.regalo-panel__lineas .es-fuerte { color: #fff; text-align: right; white-space: normal; }
+.regalo-panel .panel__total { padding-top: 12px; }
+.regalo-panel .panel__total span { font-size: 15px; }
+.regalo-panel .panel__total strong { font-size: 34px; }
+
+/* Enviado */
+.regalo-enviado { padding-top: clamp(48px, 6.9vw, 88px); padding-bottom: clamp(48px, 6.9vw, 88px); outline: none; }
+.regalo-enviado__titulo { font: 400 clamp(44px, 6.3vw, 80px)/.92 var(--fuente-titulo); text-transform: uppercase; }
+.regalo-enviado__cuando { font: 500 clamp(16px, 1.7vw, 22px) var(--fuente-texto); }
+.regalo-enviado__texto { max-width: 460px; font: 400 15px/1.6 var(--fuente-texto); color: var(--texto-3); }

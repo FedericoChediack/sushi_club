@@ -1,0 +1,51 @@
+/* Catering */
+
+.cat-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  align-items: flex-end;
+  padding-top: clamp(24px, 3.2vw, 40px);
+  padding-bottom: clamp(36px, 5vw, 64px);
+}
+.cat-cabecera__texto { flex: 1 1 420px; display: flex; flex-direction: column; gap: 14px; }
+.cat-cabecera__texto .bajada { max-width: 480px; }
+.cat-cabecera__imagen { flex: 1 1 360px; }
+.cat-cabecera__imagen img { object-position: center 55%; }
+
+.cat-servicios {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0 32px;
+  padding-top: clamp(32px, 4.4vw, 56px);
+}
+.cat-servicio { display: flex; flex-direction: column; gap: 8px; border-top: 2px solid var(--rojo); padding: 16px 0 24px; }
+.cat-servicio__numero { font: 400 36px/1 var(--fuente-titulo); color: var(--rojo-claro); }
+.cat-servicio__titulo { font: 400 26px/1 var(--fuente-titulo); text-transform: uppercase; }
+.cat-servicio__descripcion { font: 400 14px/1.5 var(--fuente-texto); color: var(--texto-3); }
+
+.cat-columnas { padding-top: clamp(24px, 3.2vw, 40px); }
+.cat-form-contenedor { display: flex; flex-direction: column; gap: 18px; }
+.cat-titulo { font-size: clamp(34px, 4.4vw, 56px); border-bottom: 2px solid var(--rojo); padding-bottom: 12px; }
+.cat-form { display: flex; flex-direction: column; gap: 18px; }
+.cat-form .campo { gap: 8px; }
+.cat-form .ficha { padding: 12px 14px; }
+.cat-enviar { align-self: flex-start; }
+
+.cat-enviado { display: flex; flex-direction: column; gap: 14px; padding: 28px; background: var(--fondo-2); outline: none; }
+.cat-enviado__titulo { font: 400 clamp(32px, 3.8vw, 48px)/1 var(--fuente-titulo); text-transform: uppercase; }
+.cat-enviado__texto { font: 400 15px/1.6 var(--fuente-texto); color: var(--texto-3); }
+.cat-enviado__boton { align-self: flex-start; padding: 14px 22px; font-size: 14px; }
+
+.cat-contacto {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: clamp(24px, 2.8vw, 36px);
+}
+.cat-contacto__titulo { font: 400 clamp(28px, 2.8vw, 36px)/1 var(--fuente-titulo); text-transform: uppercase; }
+.cat-contacto__texto { font: 400 14px/1.5 var(--fuente-texto); }
+.cat-contacto .boton--whatsapp { padding: 15px 18px; }
+.cat-contacto__correo { font: 500 13px var(--fuente-texto); color: var(--texto-3); }
+.cat-contacto__correo button { color: var(--texto); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }

@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Catering · SushiClub</title>
+  <meta name="theme-color" content="#0e0d0c">
+  <link rel="icon" href="../img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/catering.css">
+  <script type="module" src="../js/catering.js"></script>
+</head>
+<body>
+  <main id="principal">
+    <section class="banda">
+      <div class="contenedor cat-cabecera">
+        <div class="cat-cabecera__texto">
+          <span class="antetitulo antetitulo--suave">SERVICIOS EMPRESARIALES</span>
+          <h1 class="titulo-pantalla">Catering</h1>
+          <p class="bajada">Sushi para reuniones, lanzamientos y eventos de 20 a 500 personas, con la misma calidad que en el salón.</p>
+        </div>
+        <div class="imagen imagen--tarjeta cat-cabecera__imagen"><img src="../img/servicios/catering.jpg" alt="Bandejas de catering de sushi"></div>
+      </div>
+    </section>
+
+    <div class="contenedor cat-servicios" id="cat-servicios"></div>
+
+    <div class="contenedor dos-columnas cat-columnas">
+      <section class="dos-columnas__principal cat-form-contenedor" aria-labelledby="cat-titulo">
+        <h2 class="titulo-seccion cat-titulo" id="cat-titulo">Pedí tu presupuesto</h2>
+
+        <form class="cat-form" id="cat-form" novalidate>
+          <div class="grilla-form">
+            <label class="campo"><span class="campo__etiqueta">Nombre y apellido *</span><input class="entrada" name="nombre" placeholder="Martín López" autocomplete="name" required></label>
+            <label class="campo"><span class="campo__etiqueta">Empresa</span><input class="entrada" name="empresa" placeholder="Opcional" autocomplete="organization"></label>
+            <label class="campo"><span class="campo__etiqueta">Email o WhatsApp *</span><input class="entrada" name="contacto" placeholder="Para enviarte la propuesta" required></label>
+            <label class="campo"><span class="campo__etiqueta">Fecha del evento</span><input class="entrada" name="fecha" type="date"></label>
+          </div>
+          <div class="campo" role="group" aria-labelledby="cat-tipo-etiqueta"><span class="campo__etiqueta" id="cat-tipo-etiqueta">Tipo de evento</span><div id="cat-tipos"></div></div>
+          <div class="campo" role="group" aria-labelledby="cat-invitados-etiqueta"><span class="campo__etiqueta" id="cat-invitados-etiqueta">Cantidad de invitados</span><div id="cat-invitados"></div></div>
+          <label class="campo"><span class="campo__etiqueta">Contanos del evento</span><textarea class="entrada" name="comentarios" rows="4" placeholder="Lugar, horario, restricciones alimentarias…"></textarea></label>
+          <p class="error-form" id="cat-error" hidden>Completá tu nombre y un contacto para que podamos responderte.</p>
+          <button type="submit" class="boton boton--grande cat-enviar">Enviar consulta →</button>
+        </form>
+
+        <div class="cat-enviado" id="cat-enviado" hidden tabindex="-1">
+          <span class="cat-enviado__titulo">¡Recibimos tu consulta!</span>
+          <p class="cat-enviado__texto">Te enviamos una propuesta en menos de 24 h hábiles. Si es urgente, escribinos por WhatsApp.</p>
+          <a class="boton boton--borde boton--chico cat-enviado__boton" href="../index.html">Volver al inicio</a>
+        </div>
+      </section>
+
+      <aside class="dos-columnas__lateral banda banda--filete cat-contacto" aria-labelledby="cat-contacto-titulo">
+        <span class="cat-contacto__titulo" id="cat-contacto-titulo">¿Preferís hablar?</span>
+        <p class="cat-contacto__texto">Nuestro equipo de eventos responde de lunes a viernes de 9 a 19 h.</p>
+        <button type="button" class="boton boton--whatsapp" data-accion="whatsapp">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.8 13.5L3 21l4.6-1.2A9 9 0 1 0 12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"></path><path d="M9 8.5c.2-.4.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.7c.1.2 0 .5-.1.6l-.5.6c.4.9 1.2 1.7 2.1 2.1l.6-.5c.2-.1.4-.2.6-.1l1.7.7c.3.1.4.3.4.5v.5c0 .3-.1.6-.5.8-.6.4-1.4.5-2.2.2a7.3 7.3 0 0 1-4.3-4.3c-.3-.8-.2-1.6.2-2.2Z" fill="currentColor"></path></svg>
+          Escribinos por WhatsApp →
+        </button>
+        <p class="cat-contacto__correo">o por mail a <button type="button" data-accion="proximamente">eventos@sushiclub.com.ar</button></p>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>

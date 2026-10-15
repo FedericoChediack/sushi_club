@@ -1,0 +1,46 @@
+/* Carrito */
+
+.carrito-mas { display: inline-block; margin-top: 18px; padding: 10px 0; font-size: 14px; }
+.carrito-vacio { padding: 24px 0; font: 400 15px var(--fuente-texto); color: var(--apagado-2); }
+
+/* Reserva de evento */
+.carrito-evento { margin-top: 20px; }
+.carrito-evento__cabecera { align-items: baseline; gap: 12px; }
+.carrito-evento__nombre { font: 400 clamp(24px, 2.6vw, 34px)/1 var(--fuente-titulo); text-transform: uppercase; }
+.carrito-evento__precio { font: 400 clamp(18px, 2.3vw, 30px)/1.05 var(--fuente-titulo); }
+.carrito-evento__cuando { font: 500 14px var(--fuente-texto); color: var(--texto-3); }
+.carrito-evento__nota { font: 400 12px var(--fuente-texto); color: var(--apagado-2); }
+.carrito-evento__cantidad .cantidad__boton { width: 40px; padding: 8px 0; }
+.carrito-evento__cantidad .cantidad__valor { min-width: 64px; }
+
+/* Ítem */
+.carrito-item {
+  display: grid;
+  grid-template-columns: clamp(84px, 11vw, 140px) minmax(0, 1fr);
+  gap: clamp(14px, 1.9vw, 24px);
+  align-items: center;
+  padding: clamp(14px, 1.6vw, 20px) 0;
+  border-bottom: 1px solid var(--linea);
+}
+.carrito-item__cuerpo { display: flex; flex-direction: column; gap: 10px; }
+.carrito-item__nombre { font: 400 clamp(18px, 2vw, 26px)/1.05 var(--fuente-titulo); text-transform: uppercase; }
+.carrito-item__subtotal { font: 400 clamp(18px, 2.3vw, 30px)/1.05 var(--fuente-titulo); }
+.carrito-item__descripcion { font: 400 13px var(--fuente-texto); color: var(--apagado-2); }
+.carrito-item__acciones { display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+
+.carrito-deshacer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 14px;
+  padding: 12px 16px;
+  background: var(--fondo-2);
+  color: #fff;
+  font: 500 13px var(--fuente-texto);
+}
+.carrito-deshacer button { color: var(--rojo-suave); font-weight: 700; padding: 6px 0; }
+
+/* Panel */
+.carrito-panel__bajada { font: 400 14px var(--fuente-texto); color: var(--texto-2); }
+.carrito-panel__ayuda { font: 400 13px/1.5 var(--fuente-texto); color: var(--apagado); }
+.carrito-panel__lineas { font-weight: 500; padding-top: 16px; }

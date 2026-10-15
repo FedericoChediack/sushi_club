@@ -1,0 +1,46 @@
+/* Pago */
+
+.pago-form { display: flex; flex-direction: column; gap: 36px; }
+.pago-paso { display: flex; flex-direction: column; gap: 16px; }
+.pago-paso > div:not(.pago-paso__cabecera) { display: flex; flex-direction: column; gap: 16px; }
+.pago-paso__cabecera { display: flex; gap: 12px; align-items: baseline; }
+.pago-paso__numero { font: 400 28px/1 var(--fuente-titulo); color: var(--rojo-claro); }
+.pago-paso__titulo { font: 400 clamp(24px, 2.5vw, 32px)/1 var(--fuente-titulo); text-transform: uppercase; }
+.pago-nota { font: 500 14px var(--fuente-texto); color: var(--texto-3); }
+.pago-pila { display: flex; flex-direction: column; gap: 16px; }
+
+.pago-caja {
+  padding: 16px;
+  border: 2px solid var(--borde-suave);
+  font: 500 14px/1.5 var(--fuente-texto);
+}
+.pago-caja--fila { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.pago-caja__texto { display: flex; flex-direction: column; gap: 2px; }
+.pago-caja__titulo { font: 700 15px var(--fuente-texto); }
+.pago-caja__detalle { font: 400 12px var(--fuente-texto); color: var(--apagado-2); }
+.pago-caja__enlace { font-size: 13px; padding: 8px 0; }
+
+/* Panel resumen */
+.pago-panel { gap: 14px; }
+.pago-evento {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  border: 3px solid var(--rojo);
+  background: rgba(200, 38, 28, .14);
+}
+.pago-evento__insignia { font: 700 11px var(--fuente-texto); letter-spacing: .16em; color: var(--rojo-suave); }
+.pago-evento__nombre { font: 400 24px/1 var(--fuente-titulo); text-transform: uppercase; }
+.pago-evento__cuando { font: 400 13px var(--fuente-texto); color: var(--texto-2); }
+.pago-evento__linea { font: 500 13px var(--fuente-texto); color: var(--texto-2); }
+.pago-evento__linea--fuerte { font: 700 14px var(--fuente-texto); color: #fff; }
+.pago-modo {
+  padding: 12px 0;
+  border-top: 1px solid var(--linea);
+  border-bottom: 1px solid var(--linea);
+  font: 500 13px var(--fuente-texto);
+  color: var(--texto-2);
+}
+.pago-modo__enlace { color: var(--rojo-suave); font-weight: 700; }
+.pago-envio { font: 500 14px var(--fuente-texto); color: var(--texto-2); }

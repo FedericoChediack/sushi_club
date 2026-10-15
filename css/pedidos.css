@@ -1,0 +1,75 @@
+/* Mis pedidos */
+
+.pedidos {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  padding-top: clamp(28px, 4.4vw, 56px);
+  padding-bottom: clamp(48px, 6.9vw, 88px);
+}
+.pedidos__contenido { display: flex; flex-direction: column; gap: 28px; }
+
+.pedidos__invitado {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 18px;
+  background: var(--fondo-2);
+  font: 500 14px var(--fuente-texto);
+}
+.pedidos__invitado .boton { padding: 12px 16px; }
+
+.pedido-tarjeta {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: clamp(18px, 2.5vw, 32px);
+  border: 2px solid var(--texto);
+}
+.pedido-tarjeta__cabecera { display: flex; flex-wrap: wrap; gap: 10px 24px; justify-content: space-between; align-items: baseline; }
+.pedido-tarjeta__titulo { display: flex; flex-direction: column; gap: 6px; }
+.pedido-tarjeta__modo { font: 700 12px var(--fuente-texto); letter-spacing: .14em; color: var(--rojo-claro); }
+.pedido-tarjeta__llegada { font: 400 clamp(26px, 3.1vw, 40px)/1 var(--fuente-titulo); text-transform: uppercase; }
+
+.seguimiento { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.seguimiento__paso { display: flex; flex-direction: column; gap: 8px; }
+.seguimiento__barra { height: 6px; background: var(--linea); }
+.seguimiento__paso.esta-hecho .seguimiento__barra { background: var(--rojo); }
+.seguimiento__etiqueta { font: 500 clamp(11px, 1.1vw, 14px)/1.3 var(--fuente-texto); color: var(--apagado-3); }
+.seguimiento__paso.esta-hecho .seguimiento__etiqueta { color: var(--texto); }
+.seguimiento__paso.esta-actual .seguimiento__etiqueta { font-weight: 700; }
+.seguimiento__hora { font: 400 11px var(--fuente-mono); color: var(--apagado-2); }
+
+.pedido-tarjeta__items {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 16px;
+  border-top: 1px solid var(--borde-suave);
+  font: 400 14px var(--fuente-texto);
+}
+.pedido-tarjeta__total { font-weight: 700; padding-top: 8px; }
+.pedido-tarjeta__ayuda { font: 400 13px var(--fuente-texto); color: var(--texto-3); }
+
+.pedidos__titulo-anteriores {
+  margin-top: 12px;
+  font: 400 clamp(30px, 3.4vw, 44px)/1 var(--fuente-titulo);
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--rojo);
+  padding-bottom: 10px;
+}
+.pedido-anterior {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--borde-suave);
+}
+.pedido-anterior__info { display: flex; flex-direction: column; gap: 4px; }
+.pedido-anterior__productos { font: 700 15px var(--fuente-texto); }
+.pedido-anterior .texto-mono { font-size: 12px; }
+.pedido-anterior .boton { padding: 12px 16px; }

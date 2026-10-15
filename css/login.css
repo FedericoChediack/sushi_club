@@ -1,0 +1,52 @@
+/* Login / Registro */
+
+.acceso { display: flex; flex-wrap: wrap; align-items: stretch; max-width: var(--ancho-maximo); margin-inline: auto; }
+
+.acceso__form-contenedor {
+  flex: 1 1 520px;
+  min-width: 0;
+  max-width: 640px;
+  padding: clamp(28px, 4.4vw, 64px) var(--margen);
+}
+.acceso__pestanas { display: flex; border-bottom: 2px solid var(--rojo); }
+.acceso__pestana {
+  flex: 1;
+  padding: 14px 0;
+  text-align: center;
+  font: 400 clamp(20px, 2vw, 26px) var(--fuente-titulo);
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--texto);
+}
+.acceso__pestana:hover { background: var(--fondo-3); }
+.acceso__pestana.esta-activo { background: var(--texto); color: var(--fondo); }
+
+.acceso__form { display: flex; flex-direction: column; gap: 20px; padding-top: 20px; }
+.acceso__olvido, .acceso__invitado { align-self: center; padding: 8px 0; font: 500 13px var(--fuente-texto); color: var(--texto-3); }
+.acceso__olvido { text-decoration: underline; }
+.acceso__invitado:hover { color: #fff; }
+.acceso__o { display: flex; align-items: center; gap: 12px; font: 500 12px var(--fuente-texto); color: var(--apagado-2); }
+.acceso__o span { flex: 1; height: 1px; background: var(--borde-suave); }
+.acceso__google { padding: 15px; }
+.acceso .casilla { width: 100%; }
+
+.acceso__promo {
+  flex: 1 1 380px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: clamp(28px, 4.4vw, 64px) var(--margen);
+}
+.acceso__promo-antetitulo { font-size: 12px; }
+.acceso__promo-titulo { font: 400 clamp(44px, 5.6vw, 72px)/.92 var(--fuente-titulo); text-transform: uppercase; }
+.acceso__promo-lista { display: flex; flex-direction: column; gap: 20px; }
+.acceso__promo-lista li {
+  display: flex;
+  gap: 14px;
+  align-items: baseline;
+  border-top: 1px solid var(--linea);
+  padding-top: 14px;
+  font: 500 15px/1.5 var(--fuente-texto);
+}
+.acceso__promo-numero { font: 400 24px/1 var(--fuente-titulo); color: var(--rojo-claro); }

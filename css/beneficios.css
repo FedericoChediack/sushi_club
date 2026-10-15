@@ -1,0 +1,70 @@
+/* Beneficios */
+
+.ben-bajada { color: #fff; max-width: 460px; }
+
+.ben-seccion { padding-top: clamp(40px, 5.6vw, 72px); }
+.ben-seccion:last-child { padding-bottom: 56px; }
+.ben-seccion .titulo-seccion { font-size: clamp(32px, 4.4vw, 56px); }
+.ben-seccion .encabezado-seccion { padding-bottom: 12px; }
+
+.ben-grilla {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(300px, 26vw, 360px), 1fr));
+  gap: clamp(0px, 2.5vw, 32px) 32px;
+  padding-top: clamp(0px, 1.9vw, 24px);
+}
+
+/* Tarjeta de beneficio */
+.producto--oferta { gap: 14px; }
+.producto--oferta .imagen { aspect-ratio: 4 / 3; }
+.producto--oferta .producto__nombre { font-size: clamp(18px, 2.2vw, 28px); }
+.producto--oferta .producto__descripcion { font-size: clamp(12px, 1.1vw, 14px); }
+.producto--oferta .producto__importe { font-size: clamp(18px, 2vw, 26px); }
+.producto--oferta .producto__agregar { padding: 13px 14px; }
+
+@media (max-width: 899px) {
+  .producto--oferta {
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    padding: 14px 0;
+    border-bottom: 1px solid var(--borde-tenue);
+  }
+  .producto--oferta .imagen { aspect-ratio: 1; }
+}
+
+/* Capa de bloqueo para no socios */
+.ben-grilla__inerte { display: contents; -webkit-user-select: none; user-select: none; }
+.ben-bloqueo {
+  position: absolute;
+  left: -12px;
+  right: -12px;
+  top: 0;
+  bottom: -12px;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(14, 13, 12, .62);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+.ben-bloqueo__caja {
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  color: var(--texto);
+}
+.ben-bloqueo__caja .insignia { align-self: center; padding: 5px 10px; letter-spacing: .16em; }
+.ben-bloqueo__titulo {
+  font: 400 clamp(26px, 3vw, 38px)/1 var(--fuente-titulo);
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.ben-bloqueo__texto { font: 400 15px/1.5 var(--fuente-texto); color: #d9d4cd; text-wrap: pretty; }
+.ben-bloqueo__acciones { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; padding-top: 4px; }
+.ben-bloqueo__boton { padding: 13px 22px; font-size: 14px; }

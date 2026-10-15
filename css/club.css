@@ -1,0 +1,52 @@
+/* Club SushiClub */
+
+.club-cabecera {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: clamp(24px, 3.2vw, 40px);
+  padding-bottom: clamp(36px, 5vw, 64px);
+}
+.club-cabecera__texto { flex: 1 1 480px; display: flex; flex-direction: column; gap: 14px; }
+.club-cabecera__bajada { max-width: 480px; color: #fff; }
+.club-cabecera__acciones { display: flex; flex-wrap: wrap; gap: 10px; }
+.club-cabecera__acciones .boton--borde { border-color: #fff; }
+
+.club-puntos { display: flex; flex-direction: column; gap: 4px; padding: 18px 22px; background: var(--fondo-3); }
+.club-puntos__etiqueta { font: 700 12px var(--fuente-texto); letter-spacing: .14em; color: var(--rojo-suave); }
+.club-puntos__valor { font: 400 44px/1 var(--fuente-titulo); }
+
+.club-grilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(300px, 26vw, 360px), 1fr));
+  gap: 20px;
+  padding-top: clamp(32px, 4.4vw, 56px);
+  padding-bottom: clamp(48px, 6.9vw, 88px);
+}
+
+.beneficio {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  border: 2px solid var(--texto);
+  background: transparent;
+}
+.beneficio.esta-bloqueado { background: var(--fondo-2); }
+.beneficio__etiqueta {
+  align-self: flex-start;
+  padding: 5px 8px;
+  background: var(--rojo);
+  color: #fff;
+  font: 700 10px var(--fuente-texto);
+  letter-spacing: .12em;
+}
+.beneficio.esta-bloqueado .beneficio__etiqueta { background: var(--apagado-2); }
+.beneficio__titulo { font: 400 clamp(24px, 2.4vw, 30px)/1.02 var(--fuente-titulo); text-transform: uppercase; }
+.beneficio.esta-bloqueado .beneficio__titulo { color: var(--apagado-2); }
+.beneficio__descripcion { font: 400 14px/1.5 var(--fuente-texto); color: var(--texto-3); }
+.beneficio__boton { margin-top: auto; padding: 13px; font-size: 14px; white-space: normal; }
+.beneficio__boton:disabled,
+.beneficio__boton:disabled:hover { background: transparent; border-color: var(--texto); color: var(--texto); cursor: default; }

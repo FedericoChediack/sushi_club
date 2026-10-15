@@ -1,0 +1,97 @@
+import { montarLayout, aviso } from './shared/layout.js';
+import { almacen, cambiarCantidad, quitarProducto, deshacerQuitar, cambiarPersonasEvento } from './shared/store.js';
+import { $, delegar, moneda, escapar, resumenCarrito, ir, pagina, enlace, rutaSegura } from './shared/utils.js';
+import { selectorCantidad, imagen } from './shared/components.js';
+
+// Un "deshacer" viejo no tiene sentido al volver a entrar.
+almacen.actualizar({ deshacer: null }, { silencioso: true });
+
+montarLayout({
+  pagina: 'carrito',
+  encabezado: 'volver',
+  volver: { texto: 'Volver', enlace: enlace(rutaSegura(almacen.obtener().ultimaPagina, 'pages/carta.html')) },
+  paso: 0,
+});
+
+function cambiarPersonas(n) {
+  if (!cambiarPersonasEvento(n)) aviso('Para más de 12 personas, consultá por Catering');
+}
+
+function cajaEvento(r) {
+  return `<div class="caja-evento carrito-evento">
+    <span class="insignia">EVENTO · RESERVA DE LUGAR</span>
+    <div class="fila carrito-evento__cabecera"><span class="carrito-evento__nombre">${r.evento.nombre}</span><span class="carrito-evento__precio">${moneda(r.sena)}</span></div>
+    <span class="carrito-evento__cuando">${r.evento.dia} · ${r.evento.hora} · Exclusivo sucursal ${r.evento.sede}</span>
+    <span class="carrito-evento__nota">Seña del 30% sobre ${moneda(r.totalEvento)}. El resto se abona en el salón.</span>
+    <div class="carrito-item__acciones">
+      <button type="button" class="boton-texto" data-accion="quitar-evento">Quitar reserva</button>
+      ${selectorCantidad(r.personas, { restar: 'restar-personas', sumar: 'sumar-personas', texto: `${r.personas} pers.`, clase: 'carrito-evento__cantidad' })}
+    </div>
+  </div>`;
+}
+
+function lista(e, r) {
+  return `${r.hayEvento ? cajaEvento(r) : ''}
+    ${r.vacio ? `<p class="carrito-vacio">Tu carrito está vacío. <a class="enlace-rojo" href="${pagina('carta')}">Ver la carta →</a></p>` : ''}
+    ${r.items.map(i => `<div class="carrito-item">
+      ${imagen(i.imagen, i.nombre, 'imagen--cuadrada')}
+      <div class="carrito-item__cuerpo">
+        <div class="fila"><span class="carrito-item__nombre">${i.nombre}</span><span class="carrito-item__subtotal">${moneda(i.subtotal)}</span></div>
+        <span class="carrito-item__descripcion">${i.descripcion}</span>
+        <div class="carrito-item__acciones">
+          <button type="button" class="boton-texto" data-accion="eliminar" data-id="${i.id}" data-nombre="${escapar(i.nombre)}">Eliminar</button>
+          ${selectorCantidad(i.cantidad, { id: i.id })}
+        </div>
+      </div>
+    </div>`).join('')}
+    ${e.deshacer ? `<div class="carrito-deshacer" role="status"><span>Eliminaste ${escapar(e.deshacer.nombre)}</span><button type="button" data-accion="deshacer">Deshacer</button></div>` : ''}`;
+}
+
+function panel(e, r) {
+  const retiro = e.modo === 'retiro';
+  return `<h2 class="panel__titulo">Elegí lo que prefieras</h2>
+    <span class="carrito-panel__bajada">Nosotros nos encargamos del resto.</span>
+    ${r.hayComida ? `
+      <button type="button" class="tarjeta-radio ${retiro ? 'esta-activo' : ''}" data-accion="modo" data-valor="retiro" aria-pressed="${retiro}">
+        <span class="tarjeta-radio__punto"></span>
+        <span class="tarjeta-radio__texto"><span class="tarjeta-radio__titulo">Retirá en el local</span><span class="tarjeta-radio__detalle">${escapar(e.sede)} · listo en 25 min · sin costo</span></span>
+      </button>
+      <button type="button" class="tarjeta-radio ${!retiro ? 'esta-activo' : ''}" data-accion="modo" data-valor="delivery" aria-pressed="${!retiro}">
+        <span class="tarjeta-radio__punto"></span>
+        <span class="tarjeta-radio__texto"><span class="tarjeta-radio__titulo">Delivery</span><span class="tarjeta-radio__detalle">45–60 min · $ 2.500</span></span>
+        <span aria-hidden="true">${retiro ? '▾' : '▴'}</span>
+      </button>
+      ${!retiro ? '<span class="carrito-panel__ayuda">Indicás la dirección en el próximo paso.</span>' : ''}` : ''}
+    <div class="panel__lineas separador-arriba carrito-panel__lineas">
+      ${r.hayComida ? `<div class="fila"><span>Subtotal</span><span>${moneda(r.subtotal)}</span></div>
+      <div class="fila"><span>Envío</span><span>${r.envio ? moneda(r.envio) : 'Sin costo'}</span></div>` : ''}
+      ${r.hayEvento ? `<div class="fila"><span>Seña evento (30%)</span><span>${moneda(r.sena)}</span></div>` : ''}
+    </div>
+    <div class="panel__total"><span>Total a pagar</span><strong>${moneda(r.total)}</strong></div>
+    <button type="button" class="boton boton--ancho boton--grande ${r.vacio ? 'esta-deshabilitado' : ''}" data-accion="ir-pago" aria-disabled="${r.vacio}">Continuar al pago →</button>`;
+}
+
+function dibujar() {
+  const e = almacen.obtener();
+  const r = resumenCarrito(e);
+  $('#carrito-lista').innerHTML = lista(e, r);
+  $('#carrito-panel').innerHTML = panel(e, r);
+}
+
+dibujar();
+almacen.suscribir(dibujar);
+
+delegar($('#principal'), 'click', {
+  sumar: el => cambiarCantidad(el.dataset.id, almacen.obtener().carrito[el.dataset.id] + 1),
+  restar: el => cambiarCantidad(el.dataset.id, almacen.obtener().carrito[el.dataset.id] - 1),
+  eliminar: el => quitarProducto(el.dataset.id, el.dataset.nombre),
+  deshacer: () => deshacerQuitar(),
+  'quitar-evento': () => almacen.actualizar({ reservaEvento: null }),
+  'restar-personas': () => cambiarPersonas(almacen.obtener().reservaEvento.personas - 1),
+  'sumar-personas': () => cambiarPersonas(almacen.obtener().reservaEvento.personas + 1),
+  modo: el => almacen.actualizar({ modo: el.dataset.valor }),
+  'ir-pago': () => {
+    if (resumenCarrito(almacen.obtener()).vacio) { aviso('Agregá al menos un producto para continuar'); return; }
+    ir(pagina('pago'));
+  },
+});
