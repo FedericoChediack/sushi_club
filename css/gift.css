@@ -87,3 +87,31 @@
 .regalo-enviado__titulo { font: 400 clamp(44px, 6.3vw, 80px)/.92 var(--fuente-titulo); text-transform: uppercase; }
 .regalo-enviado__cuando { font: 500 clamp(16px, 1.7vw, 22px) var(--fuente-texto); }
 .regalo-enviado__texto { max-width: 460px; font: 400 15px/1.6 var(--fuente-texto); color: var(--texto-3); }
+
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  .regalo-cajas { grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); }
+  .regalo-vista { padding: 18px; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  .regalo-cabecera { gap: 18px; padding-top: 20px; padding-bottom: 20px; }
+  .regalo-cabecera__imagen { flex: 1 1 100%; }
+  .regalo-principal { gap: 16px; }
+  .regalo-paso { gap: 16px; }
+  .regalo-titulo { font-size: 30px; }
+  .regalo-cajas { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .regalo-caja { padding: 10px; gap: 8px; }
+  .regalo-caja__nombre { font-size: 20px; }
+  .regalo-caja__descripcion { font-size: 12px; }
+  .regalo-caja__precio { font-size: 18px; }
+  .regalo-tarjeta { gap: 16px; }
+  .regalo-tarjeta__campos, .regalo-vista { flex: 1 1 100%; }
+  .regalo-vista { padding: 16px; aspect-ratio: 16 / 10; }
+  .regalo-vista__mensaje { font-size: 15px; }
+  .regalo-nav { gap: 10px; padding-top: 10px; }
+  .regalo-nav__atras, .regalo-nav__siguiente { padding: 12px 16px; font-size: 13px; }
+  .regalo-panel__titulo { font-size: 24px; }
+  .regalo-panel .panel__total strong { font-size: 28px; }
+}

@@ -49,3 +49,24 @@
 .cat-contacto .boton--whatsapp { padding: 15px 18px; }
 .cat-contacto__correo { font: 500 13px var(--fuente-texto); color: var(--texto-3); }
 .cat-contacto__correo button { color: var(--texto); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  .cat-cabecera { gap: 24px; padding-bottom: 36px; }
+  .cat-servicios { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  .cat-cabecera { gap: 20px; padding-top: 20px; padding-bottom: 24px; }
+  .cat-cabecera__texto, .cat-cabecera__imagen { flex: 1 1 100%; }
+  .cat-servicios { grid-template-columns: 1fr; gap: 0; padding-top: 24px; }
+  .cat-servicio { padding: 14px 0 20px; }
+  .cat-servicio__numero { font-size: 30px; }
+  .cat-servicio__titulo { font-size: 22px; }
+  .cat-titulo { font-size: 32px; }
+  .cat-form { gap: 14px; }
+  .cat-enviar { align-self: stretch; }
+  .cat-enviado { padding: 20px; }
+  .cat-contacto { padding: 20px; }
+}

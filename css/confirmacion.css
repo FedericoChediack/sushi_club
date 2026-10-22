@@ -4,7 +4,7 @@
 .barra-ok__acciones { display: flex; gap: 28px; align-items: center; font: 700 14px var(--fuente-texto); }
 .barra-ok__ingreso { padding: 10px 18px; background: var(--fondo-3); color: var(--rojo-claro); white-space: nowrap; }
 .barra-ok__cerrar { justify-content: flex-end; padding-top: 20px; }
-@media (max-width: 899px) { .barra-ok__cerrar { display: flex !important; } }
+@media (max-width: 767px) { .barra-ok__cerrar { display: flex !important; } }
 .barra-ok__cerrar a { display: grid; place-items: center; width: 44px; height: 44px; font: 400 28px/1 var(--fuente-titulo); color: var(--rojo-claro); }
 
 .confirmacion { gap: 28px; padding-top: 96px; padding-bottom: 112px; }
@@ -15,7 +15,17 @@
 .confirmacion__invitado { max-width: 460px; font: 400 16px/1.6 var(--fuente-texto); color: var(--texto-3); }
 .confirmacion__acciones { margin-top: 8px; gap: 14px; }
 
-@media (max-width: 899px) {
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  .confirmacion { padding-top: 64px; padding-bottom: 72px; }
+  .confirmacion__titulo { font-size: 72px; }
+  .barra-ok__acciones { gap: 18px; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  .barra-ok__interior { padding-top: 14px; padding-bottom: 14px; }
+  .barra-ok__ingreso { padding: 8px 14px; font-size: 13px; }
   .confirmacion { gap: 22px; padding-top: 48px; padding-bottom: 40px; padding-inline: 24px; min-height: 700px; }
   .confirmacion__tilde { width: 150px; height: 150px; font-size: 84px; }
   .confirmacion__titulo { font-size: 52px; line-height: .92; }

@@ -100,7 +100,7 @@ input::placeholder, textarea::placeholder { color: var(--apagado-3); }
 .banda--filete { box-shadow: inset 0 -2px 0 var(--rojo); }
 
 .solo-mobile { display: none !important; }
-@media (max-width: 899px) {
+@media (max-width: 1023px) {
   .solo-desktop { display: none !important; }
   .solo-mobile { display: revert !important; }
 }
@@ -502,7 +502,7 @@ input[type="date"].entrada { padding: 13px; color-scheme: dark; }
 .hamburguesa span { display: block; height: 2px; width: 22px; background: var(--texto); }
 .hamburguesa span:last-child { width: 14px; background: var(--rojo); }
 
-@media (max-width: 899px) {
+@media (max-width: 1023px) {
   .encabezado__superior { padding-top: 10px; padding-bottom: 10px; padding-inline: 18px; }
   .encabezado .logo { font-size: 23px; }
   .encabezado__ingreso-mobile { display: grid !important; place-items: center; height: 44px; padding: 0 6px; font: 700 12px var(--fuente-texto); color: var(--apagado); }
@@ -575,7 +575,7 @@ input[type="date"].entrada { padding: 13px; color-scheme: dark; }
 .pie__principal { flex: 1; display: flex; flex-direction: column; gap: 20px; }
 .pie__enlaces, .pie__redes { display: flex; flex-wrap: wrap; gap: 12px 28px; font: 700 14px var(--fuente-texto); }
 .pie a:hover, .pie button:hover { color: var(--rojo-suave); }
-@media (max-width: 899px) {
+@media (max-width: 767px) {
   .pie__interior {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -740,6 +740,76 @@ body:has(.barra-carrito) .aviso { bottom: calc(var(--alto-barra-carrito, 96px) +
   font: 400 clamp(64px, 7.5vw, 96px)/1 var(--fuente-titulo);
 }
 .exito__acciones { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+
+/* ==========================================================================
+   Breakpoints responsive — ajustes para tablet y mobile
+   Desktop base: ≥ 1024px (sin @media)
+   Tablet: ≤ 1023px
+   Mobile: ≤ 767px
+   ========================================================================== */
+
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  :root { --distancia-panel: 56px; }
+  .dos-columnas { gap: clamp(24px, 4vw, 40px); padding-top: clamp(20px, 3vw, 40px); padding-bottom: clamp(32px, 5vw, 64px); }
+  .panel { position: static; top: auto; }
+  .barra-carrito__interior { gap: 10px 18px; }
+  .barra-carrito__titulo { font-size: 20px; }
+  .barra-carrito .boton { padding: 13px 18px; font-size: 13px; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  body { font-size: 14px; }
+  .dos-columnas { gap: 24px; padding-top: 20px; padding-bottom: 32px; }
+  .dos-columnas__principal, .dos-columnas__lateral { flex: 1 1 100%; }
+
+  .boton { padding: 14px 20px; font-size: 14px; }
+  .boton--grande { padding: 15px 22px; font-size: 15px; }
+  .boton--chico { padding: 10px 14px; font-size: 12px; }
+
+  .cantidad__boton { width: 40px; padding: 8px 0; }
+
+  .tarjeta-radio { padding: 14px; gap: 12px; }
+  .tarjeta-radio__titulo { font-size: 15px; }
+  .tarjeta-radio__detalle { font-size: 12px; }
+
+  .fichas { gap: 6px; }
+  .ficha { padding: 10px 14px; font-size: 12px; }
+
+  .grilla-form, .grilla-form--chica { grid-template-columns: 1fr; gap: 12px; }
+  .entrada { padding: 12px; font-size: 14px; }
+
+  .encabezado-seccion { padding-bottom: 10px; }
+  .encabezado-seccion__extra { font-size: 12px; gap: 10px 16px; }
+
+  .barra-volver__interior { padding-top: 12px; padding-bottom: 12px; }
+  .barra-volver__enlace { font-size: 14px; }
+
+  .panel { padding: 20px; gap: 14px; }
+  .panel__titulo { font-size: 28px; }
+  .panel__total strong { font-size: 32px; }
+  .panel__lineas { font-size: 13px; }
+
+  .barra-carrito__interior { padding-top: 10px; padding-bottom: 10px; gap: 8px 14px; }
+  .barra-carrito__titulo { font-size: 18px; }
+  .barra-carrito__productos, .barra-carrito__evento { font-size: 12px; }
+  .barra-carrito__total strong { font-size: 22px; }
+  .barra-carrito__derecha { gap: 12px; }
+  .barra-carrito .boton { padding: 12px 14px; font-size: 13px; }
+
+  .modal__cabecera { padding: 16px 18px 18px; }
+  .modal__busqueda, .modal__pie, .modal__enlaces { padding-inline: 18px; }
+  .lista-sedes { padding-inline: 18px; }
+  .sede { width: calc(100% + 20px); margin: 0 -10px; padding: 10px; }
+  .sede__nombre { font-size: 18px; }
+
+  .servicios { grid-template-columns: 1fr; }
+  .servicio { padding: 16px 18px; }
+
+  .cabecera-pantalla { padding-top: clamp(16px, 3vw, 24px); padding-bottom: clamp(24px, 4vw, 40px); }
+  .cabecera-pantalla .bajada { margin-top: 12px; }
+}
 
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {

@@ -41,3 +41,22 @@
 .ev-detalle__cantidad .cantidad__valor { width: 36px; }
 .ev-detalle__nota { font: 400 12px var(--fuente-texto); color: var(--apagado-2); }
 .boton.esta-reservado { background: var(--fondo-4); border-color: var(--fondo-4); }
+
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  .ev-detalle { gap: 32px; }
+  .ev-detalle__imagen { aspect-ratio: 4 / 3; max-height: 480px; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  .ev-volver .contenedor { padding-top: 12px; padding-bottom: 12px; }
+  .ev-detalle { gap: 20px; padding-top: 20px; padding-bottom: 32px; }
+  .ev-detalle__imagen, .ev-detalle__info { flex: 1 1 100%; }
+  .ev-detalle__imagen { aspect-ratio: 16 / 10; max-height: none; }
+  .ev-detalle__info { gap: 14px; }
+  .ev-detalle__fecha { font-size: 40px; }
+  .ev-detalle__descripcion { font-size: 14px; }
+  .ev-detalle__datos div { font-size: 13px; padding: 10px 0; }
+  .ev-detalle__incluye li { font-size: 14px; }
+}

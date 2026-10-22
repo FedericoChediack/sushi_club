@@ -73,3 +73,26 @@
 .pedido-anterior__productos { font: 700 15px var(--fuente-texto); }
 .pedido-anterior .texto-mono { font-size: 12px; }
 .pedido-anterior .boton { padding: 12px 16px; }
+
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  .pedidos { gap: 24px; }
+  .pedido-tarjeta { gap: 20px; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  .pedidos { gap: 20px; padding-top: 20px; padding-bottom: 32px; }
+  .pedidos__contenido { gap: 20px; }
+  .pedidos__invitado { padding: 12px 14px; gap: 10px; font-size: 13px; }
+  .pedido-tarjeta { gap: 18px; padding: 16px; }
+  .pedido-tarjeta__cabecera { gap: 6px 16px; }
+  .pedido-tarjeta__llegada { font-size: 22px; }
+  .seguimiento { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 8px; }
+  .seguimiento__etiqueta { font-size: 11px; }
+  .pedido-tarjeta__items { font-size: 13px; }
+  .pedidos__titulo-anteriores { font-size: 26px; }
+  .pedido-anterior { gap: 8px 16px; padding: 12px 0; }
+  .pedido-anterior__productos { font-size: 14px; }
+  .pedido-anterior .boton { padding: 10px 14px; font-size: 12px; }
+}

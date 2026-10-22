@@ -44,3 +44,22 @@
 .carrito-panel__bajada { font: 400 14px var(--fuente-texto); color: var(--texto-2); }
 .carrito-panel__ayuda { font: 400 13px/1.5 var(--fuente-texto); color: var(--apagado); }
 .carrito-panel__lineas { font-weight: 500; padding-top: 16px; }
+
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  .carrito-item { grid-template-columns: 100px minmax(0, 1fr); gap: 16px; padding: 16px 0; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  .carrito-item { grid-template-columns: 80px minmax(0, 1fr); gap: 12px; padding: 14px 0; }
+  .carrito-item__nombre { font-size: 17px; }
+  .carrito-item__subtotal { font-size: 20px; }
+  .carrito-item__descripcion { font-size: 12px; }
+  .carrito-item__acciones { gap: 10px; }
+  .carrito-evento__nombre { font-size: 22px; }
+  .carrito-evento__precio { font-size: 20px; }
+  .carrito-evento__cantidad .cantidad__boton { width: 36px; }
+  .carrito-evento__cantidad .cantidad__valor { min-width: 44px; }
+  .carrito-deshacer { flex-direction: column; align-items: flex-start; gap: 6px; padding: 10px 14px; }
+}

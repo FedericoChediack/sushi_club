@@ -44,3 +44,22 @@
 }
 .pago-modo__enlace { color: var(--rojo-suave); font-weight: 700; }
 .pago-envio { font: 500 14px var(--fuente-texto); color: var(--texto-2); }
+
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  .pago-form { gap: 28px; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  .pago-form { gap: 24px; }
+  .pago-paso { gap: 12px; }
+  .pago-paso__numero { font-size: 24px; }
+  .pago-paso__titulo { font-size: 22px; }
+  .pago-caja { padding: 14px; }
+  .pago-caja--fila { flex-wrap: wrap; }
+  .pago-caja__titulo { font-size: 14px; }
+  .pago-nota, .pago-envio { font-size: 13px; }
+  .pago-evento { padding: 12px; }
+  .pago-evento__nombre { font-size: 20px; }
+}

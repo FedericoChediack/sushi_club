@@ -50,3 +50,22 @@
 .beneficio__boton { margin-top: auto; padding: 13px; font-size: 14px; white-space: normal; }
 .beneficio__boton:disabled,
 .beneficio__boton:disabled:hover { background: transparent; border-color: var(--texto); color: var(--texto); cursor: default; }
+
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  .club-cabecera { gap: 20px; padding-bottom: 36px; }
+  .club-grilla { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  .club-cabecera { gap: 16px; padding-top: 20px; padding-bottom: 24px; }
+  .club-cabecera__texto { flex: 1 1 100%; }
+  .club-puntos { padding: 14px 18px; }
+  .club-puntos__valor { font-size: 36px; }
+  .club-cabecera__acciones .boton { flex: 1; min-width: 0; }
+  .club-grilla { grid-template-columns: 1fr; gap: 12px; padding-top: 24px; padding-bottom: 40px; }
+  .beneficio { padding: 18px; }
+  .beneficio__titulo { font-size: 22px; }
+  .beneficio__descripcion { font-size: 13px; }
+}

@@ -1,6 +1,6 @@
 (() => {
-  const { montarLayout, aviso, avisoSiguiente } = SushiClub.layout;
-  const { almacen, cambiarCantidad, reservarEvento } = SushiClub.estado;
+  const { montarLayout, aviso } = SushiClub.layout;
+  const { almacen, reservarEvento } = SushiClub.estado;
   const { EVENTOS } = SushiClub.datos;
   const { $, delegar, ir, pagina, productoPorId } = SushiClub.utilidades;
   const { tarjetaProducto, accionesProducto } = SushiClub.componentes;
@@ -33,11 +33,6 @@
 
   delegar($('#principal'), 'click', {
     ...accionesProducto,
-    'agregar-portada': () => {
-      cambiarCantidad('combo45', Math.max(1, almacen.obtener().carrito.combo45 || 0));
-      avisoSiguiente('Sumamos el Combinado Club 45 a tu pedido');
-      ir(pagina('carta'));
-    },
     reservar: el => {
       reservarEvento(el.dataset.id);
       aviso('Sumamos tu reserva. Seguí mirando o andá al checkout.');

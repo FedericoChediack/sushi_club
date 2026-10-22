@@ -23,7 +23,16 @@
 .producto--oferta .producto__importe { font-size: clamp(18px, 2vw, 26px); }
 .producto--oferta .producto__agregar { padding: 13px 14px; }
 
-@media (max-width: 899px) {
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  .ben-grilla { grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 24px; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  .ben-seccion { padding-top: 32px; }
+  .ben-seccion .titulo-seccion { font-size: 28px; }
+  .ben-grilla { grid-template-columns: 1fr; gap: 0; padding-top: 8px; }
   .producto--oferta {
     display: grid;
     grid-template-columns: 96px minmax(0, 1fr);
@@ -31,6 +40,11 @@
     border-bottom: 1px solid var(--borde-tenue);
   }
   .producto--oferta .imagen { aspect-ratio: 1; }
+  .producto--oferta .producto__nombre { font-size: 17px; }
+  .producto--oferta .producto__descripcion { font-size: 12px; }
+  .ben-bloqueo { padding: 20px; }
+  .ben-bloqueo__titulo { font-size: 24px; }
+  .ben-bloqueo__texto { font-size: 14px; }
 }
 
 /* Capa de bloqueo para no socios */

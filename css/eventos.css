@@ -28,3 +28,18 @@
 .evento-tarjeta__acciones { display: flex; gap: 10px; }
 .evento-tarjeta__acciones .boton { flex: 1; padding: 13px; font-size: 14px; }
 .boton.esta-reservado { background: var(--fondo-4); border-color: var(--fondo-4); }
+
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  .eventos-grilla { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  .eventos-grilla { grid-template-columns: 1fr; gap: 20px; padding-top: 24px; padding-bottom: 40px; }
+  .evento-tarjeta { gap: 12px; padding-top: 12px; }
+  .evento-tarjeta__fecha { font-size: 42px; }
+  .evento-tarjeta__nombre { font-size: 24px; }
+  .evento-tarjeta__descripcion { font-size: 13px; }
+  .evento-tarjeta__acciones .boton { padding: 12px; font-size: 13px; }
+}

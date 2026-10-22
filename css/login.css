@@ -50,3 +50,23 @@
   font: 500 15px/1.5 var(--fuente-texto);
 }
 .acceso__promo-numero { font: 400 24px/1 var(--fuente-titulo); color: var(--rojo-claro); }
+
+/* ---------- Tablet (≤ 1023px) ---------- */
+@media (max-width: 1023px) {
+  .acceso__form-contenedor { flex: 1 1 100%; max-width: 100%; padding: 32px var(--margen); }
+  .acceso__promo { flex: 1 1 100%; padding: 24px var(--margen) 40px; }
+  .acceso__promo-titulo { font-size: 48px; }
+}
+
+/* ---------- Mobile (≤ 767px) ---------- */
+@media (max-width: 767px) {
+  .acceso__form-contenedor { padding: 20px var(--margen) 28px; }
+  .acceso__pestana { padding: 12px 0; font-size: 20px; }
+  .acceso__form { gap: 16px; padding-top: 16px; }
+  .acceso__google { padding: 13px; font-size: 14px; }
+  .acceso__promo { padding: 20px var(--margen) 32px; gap: 16px; }
+  .acceso__promo-titulo { font-size: 36px; }
+  .acceso__promo-lista { gap: 14px; }
+  .acceso__promo-lista li { font-size: 14px; padding-top: 12px; gap: 10px; }
+  .acceso__promo-numero { font-size: 20px; }
+}
