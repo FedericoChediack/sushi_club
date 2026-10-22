@@ -37,6 +37,24 @@
   display: flex;
   align-items: flex-end;
 }
+.portada__sello {
+  position: absolute;
+  right: 100px;
+  bottom: 64px;
+  z-index: 2;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--rojo);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, .45);
+}
+.portada__sello-numero { font: 400 44px/1 var(--fuente-titulo); }
+.portada__sello-texto { font: 700 12px var(--fuente-texto); letter-spacing: .2em; }
 .portada__contenido {
   position: relative;
   padding: 40px 0 64px;
@@ -44,12 +62,25 @@
   flex-direction: column;
   gap: 26px;
 }
+.portada__antetitulo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font: 700 13px var(--fuente-texto);
+  letter-spacing: .2em;
+  color: var(--texto-2);
+  white-space: nowrap;
+}
+.portada__guion { width: 28px; height: 2px; background: var(--rojo); }
 .portada__titulo {
   font: 400 88px/.92 var(--fuente-titulo);
   text-transform: uppercase;
 }
 .portada__titulo span { display: block; }
 .portada__accion { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+.portada__precio { font: 500 15px var(--fuente-texto); color: var(--texto-2); white-space: nowrap; }
+.portada__precio b { color: #fff; }
+.portada__precio s { color: var(--rojo-claro); }
 
 /* ---------- Bloques ---------- */
 .inicio-bloque { padding-top: 80px; }
@@ -104,6 +135,8 @@
 /* ---------- Tablet (≤ 1023px) ---------- */
 @media (max-width: 1023px) {
   .portada__interior { min-height: 520px; }
+  .portada__sello { right: 32px; bottom: 32px; width: 120px; height: 120px; }
+  .portada__sello-numero { font-size: 36px; }
   .portada__titulo { font-size: 68px; }
 
   .inicio-bloque { padding-top: 56px; }
@@ -130,10 +163,15 @@
     background: linear-gradient(0deg, rgba(14, 13, 12, .97) 35%, rgba(14, 13, 12, 0));
   }
   .portada__interior { min-height: 480px; }
+  .portada__sello { right: 18px; top: 22px; bottom: auto; width: 96px; height: 96px; }
+  .portada__sello-numero { font-size: 30px; }
+  .portada__sello-texto { font-size: 8px; }
   .portada__contenido { padding: 18px 0 26px; gap: 14px; }
+  .portada__antetitulo { font-size: 11px; }
   .portada__titulo { font-size: 52px; }
   .portada__accion { gap: 12px; }
   .portada__accion .boton { padding: 14px 20px; font-size: 14px; }
+  .portada__precio { font-size: 13px; }
 
   .inicio-bloque { padding-top: 44px; }
   .inicio-bloque--ultimo { padding-bottom: 44px; }
